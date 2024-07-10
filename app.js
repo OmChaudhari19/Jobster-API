@@ -2,7 +2,7 @@ require('dotenv').config();
 require('express-async-errors');
 
 // extra security packages
-const helmet = require('helmet');
+const helmet = require('helmet');//For Cross site scripting protection
 const xss = require('xss-clean');
 const path=require('path');
 
@@ -32,7 +32,7 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/jobs', authenticateUser,jobsRouter);
 
 app.get('*',(req,res)=>{
-   res.sendFile(path.resolve(__dirname,'./client/build','/index.html'));
+  res.sendFile(path.resolve(__dirname,'./client/build','/index.html'));
 })
 
 app.use(notFoundMiddleware);
